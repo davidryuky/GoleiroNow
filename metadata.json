@@ -1,0 +1,5 @@
+{
+  "name": "GoleiroNow",
+  "description": "An application for renting goalkeepers for soccer matches. Users can search, filter, view profiles, and book goalkeepers. Goalkeepers can manage their profiles and reservations.",
+  "requestFramePermissions": []
+}
