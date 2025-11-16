@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -15,20 +14,46 @@ import GoalkeeperDashboard from './pages/GoalkeeperDashboard';
 import GoalkeeperEditProfile from './pages/GoalkeeperEditProfile';
 import GoalkeeperReceivedReservations from './pages/GoalkeeperReceivedReservations';
 
-const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { currentUser } = useAuth();
-  return currentUser ? <>{children}</> : <Navigate to="/login" />;
+const ClientRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+    const { currentUser, userType } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login', { state: { from: location } });
+        } else if (userType !== 'client') {
+            navigate('/');
+        }
+    }, [currentUser, userType, navigate, location]);
+
+    return currentUser && userType === 'client' ? children : null;
 };
 
-const GoalkeeperRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const GoalkeeperRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
     const { currentUser, userType } = useAuth();
-    return currentUser && userType === 'goalkeeper' ? <>{children}</> : <Navigate to="/" />;
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login', { state: { from: location } });
+        } else if (userType !== 'goalkeeper') {
+            navigate('/');
+        }
+    }, [currentUser, userType, navigate, location]);
+
+    return currentUser && userType === 'goalkeeper' ? children : null;
 };
 
-const ClientRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { currentUser, userType } = useAuth();
-    return currentUser && userType === 'client' ? <>{children}</> : <Navigate to="/" />;
-};
+const NotFoundRedirect: React.FC = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate('/');
+    }, [navigate]);
+    return null;
+}
+
 
 function App() {
   return (
@@ -50,7 +75,7 @@ function App() {
             <Route path="/goalkeeper/edit-profile" element={<GoalkeeperRoute><GoalkeeperEditProfile /></GoalkeeperRoute>} />
             <Route path="/goalkeeper/reservations" element={<GoalkeeperRoute><GoalkeeperReceivedReservations /></GoalkeeperRoute>} />
 
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<NotFoundRedirect />} />
           </Route>
         </Routes>
       </HashRouter>

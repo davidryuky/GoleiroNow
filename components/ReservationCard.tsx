@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Reservation, Goalkeeper, User, ReservationStatus } from '../types';
 import { getGoalkeeperById, getUserById } from '../services/api';
@@ -45,12 +44,12 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ reservation, perspect
   }
 
   return (
-    <div className="bg-gray-800/50 border border-gray-700 p-5 rounded-xl shadow-lg transition-all duration-300 hover:border-primary">
+    <div className="bg-gray-800/20 backdrop-blur-sm border border-gray-700/50 p-5 rounded-xl shadow-lg transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(126,63,242,0.3)]">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex items-center gap-4">
            {perspective === 'client' && goalkeeper && <img src={goalkeeper.photoUrl} alt={goalkeeper.name} className="w-16 h-16 rounded-full object-cover"/>}
           <div>
-            <div className="flex items-center gap-2 text-xl font-bold text-white">
+            <div className="flex items-center gap-2 text-xl font-bold text-white font-orbitron">
                 {perspective === 'client' ? <ShieldCheckIcon className="w-6 h-6 text-primary"/> : <UserIcon className="w-6 h-6 text-primary" />}
                 {entity.name}
             </div>
@@ -61,7 +60,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ reservation, perspect
             {reservation.status.charAt(0).toUpperCase() + reservation.status.slice(1)}
         </div>
       </div>
-      <div className="border-t border-gray-700 my-4"></div>
+      <div className="border-t border-gray-700/50 my-4"></div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-300">
         <div className="flex items-center gap-2">
             <CalendarIcon className="w-5 h-5 text-primary"/>
@@ -77,8 +76,8 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ reservation, perspect
       </div>
       {perspective === 'goalkeeper' && reservation.status === ReservationStatus.Pending && onStatusChange && (
         <div className="mt-4 flex gap-4">
-          <button onClick={() => onStatusChange(reservation.id, ReservationStatus.Confirmed)} className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">Aceitar</button>
-          <button onClick={() => onStatusChange(reservation.id, ReservationStatus.Rejected)} className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors">Recusar</button>
+          <button onClick={() => onStatusChange(reservation.id, ReservationStatus.Confirmed)} className="bg-green-500/80 text-white py-2 px-4 rounded-lg hover:bg-green-500 transition-colors">Aceitar</button>
+          <button onClick={() => onStatusChange(reservation.id, ReservationStatus.Rejected)} className="bg-red-500/80 text-white py-2 px-4 rounded-lg hover:bg-red-500 transition-colors">Recusar</button>
         </div>
       )}
        {perspective === 'client' && reservation.status === ReservationStatus.Pending && onStatusChange && (
