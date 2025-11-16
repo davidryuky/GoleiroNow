@@ -1,0 +1,27 @@
+{
+  "short_name": "GoleiroNow",
+  "name": "GoleiroNow",
+  "icons": [
+    {
+      "src": "https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "64x64 32x32 24x24 16x16"
+    },
+    {
+      "src": "https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#7E3FF2",
+  "background_color": "#0D0D0D",
+  "description": "An application for renting goalkeepers for soccer matches. Users can search, filter, view profiles, and book goalkeepers. Goalkeepers can manage their profiles and reservations."
+}
