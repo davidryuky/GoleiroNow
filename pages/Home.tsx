@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     <div className="bg-dark text-white">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://picsum.photos/seed/stadium/1920/1080')"}}></div>
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "url('https://img.freepik.com/fotos-gratis/jogadores-de-futebol-em-acao-em-estadios-profissionais_654080-1750.jpg')"}}></div>
         <div className="absolute inset-0 bg-dark/70"></div>
         <div className="relative z-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 animate-fade-in-down">

@@ -1,10 +1,11 @@
-
 import { Goalkeeper, User, Reservation, ReservationStatus } from '../types';
 
 let users: User[] = [
   { id: 1, name: 'Carlos Silva', city: 'São Paulo', favorites: [2, 4] },
   { id: 2, name: 'Ana Pereira', city: 'Rio de Janeiro', favorites: [1] },
 ];
+
+const goalkeeperPhoto = 'https://img.freepik.com/fotos-gratis/close-up-do-goleiro_23-2147813141.jpg';
 
 let goalkeepers: Goalkeeper[] = [
   {
@@ -16,7 +17,7 @@ let goalkeepers: Goalkeeper[] = [
     pricePerHour: 50,
     rating: 4.8,
     availability: { 'Segunda': ['noite'], 'Quarta': ['tarde', 'noite'], 'Sexta': ['noite'] },
-    photoUrl: 'https://picsum.photos/seed/g1/400/400',
+    photoUrl: goalkeeperPhoto,
     description: 'Goleiro ágil com excelente reflexo. Experiência em campeonatos amadores e muita vontade de vencer.',
   },
   {
@@ -28,7 +29,7 @@ let goalkeepers: Goalkeeper[] = [
     pricePerHour: 70,
     rating: 4.9,
     availability: { 'Terça': ['noite'], 'Quinta': ['noite'], 'Sábado': ['manhã', 'tarde'] },
-    photoUrl: 'https://picsum.photos/seed/g2/400/400',
+    photoUrl: goalkeeperPhoto,
     description: 'Liderança em campo e ótimo posicionamento. Segurança para sua zaga.',
   },
   {
@@ -40,7 +41,7 @@ let goalkeepers: Goalkeeper[] = [
     pricePerHour: 60,
     rating: 4.7,
     availability: { 'Segunda': ['manhã'], 'Quarta': ['manhã'], 'Domingo': ['tarde'] },
-    photoUrl: 'https://picsum.photos/seed/g3/400/400',
+    photoUrl: goalkeeperPhoto,
     description: 'Velocidade e boa saída do gol. Perfeito para times que jogam com a linha adiantada.',
   },
   {
@@ -52,9 +53,81 @@ let goalkeepers: Goalkeeper[] = [
     pricePerHour: 80,
     rating: 5.0,
     availability: { 'Sábado': ['tarde', 'noite'], 'Domingo': ['manhã'] },
-    photoUrl: 'https://picsum.photos/seed/g4/400/400',
+    photoUrl: goalkeeperPhoto,
     description: 'Campeão de tudo! Experiência de sobra para garantir a tranquilidade do seu time. Defende até pensamento.',
   },
+  {
+    id: 5,
+    name: 'Cássio',
+    age: 36,
+    city: 'Belo Horizonte',
+    region: 'Pampulha',
+    pricePerHour: 90,
+    rating: 4.9,
+    availability: { 'Segunda': ['noite'], 'Sexta': ['noite'], 'Domingo': ['manhã'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Gigante no gol, especialista em defender pênaltis. Traz segurança e experiência de campeão.'
+  },
+  {
+    id: 6,
+    name: 'Weverton',
+    age: 34,
+    city: 'Salvador',
+    region: 'Barra',
+    pricePerHour: 85,
+    rating: 4.8,
+    availability: { 'Terça': ['tarde', 'noite'], 'Quinta': ['noite'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Goleiro de seleção, muito seguro e com ótimo jogo com os pés.'
+  },
+  {
+    id: 7,
+    name: 'Gatito Fernández',
+    age: 34,
+    city: 'Porto Alegre',
+    region: 'Moinhos de Vento',
+    pricePerHour: 75,
+    rating: 4.6,
+    availability: { 'Quarta': ['noite'], 'Sábado': ['tarde', 'noite'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Paredão paraguaio, especialista em defesas difíceis e com muita garra.'
+  },
+  {
+    id: 8,
+    name: 'João Ricardo',
+    age: 33,
+    city: 'Curitiba',
+    region: 'Centro Cívico',
+    pricePerHour: 65,
+    rating: 4.5,
+    availability: { 'Segunda': ['manhã'], 'Quarta': ['tarde'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Experiente e regular, um goleiro confiável para qualquer partida.'
+  },
+  {
+    id: 9,
+    name: 'Léo Jardim',
+    age: 28,
+    city: 'Belo Horizonte',
+    region: 'Savassi',
+    pricePerHour: 70,
+    rating: 4.7,
+    availability: { 'Terça': ['noite'], 'Sábado': ['manhã'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Goleiro moderno, com bom reflexo e agilidade para defesas incríveis.'
+  },
+  {
+    id: 10,
+    name: 'Everson',
+    age: 32,
+    city: 'São Paulo',
+    region: 'Centro',
+    pricePerHour: 80,
+    rating: 4.8,
+    availability: { 'Quinta': ['noite'], 'Domingo': ['tarde', 'noite'] },
+    photoUrl: goalkeeperPhoto,
+    description: 'Ótimo com os pés, funciona como um líbero. Defesas seguras e boa reposição de bola.'
+  }
 ];
 
 let reservations: Reservation[] = [

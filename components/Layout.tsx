@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { UserIcon, ShieldCheckIcon, LogOutIcon } from './icons';
+import BottomNavbar from './BottomNavbar';
 
 const Navbar = () => {
   const { currentUser, userType, logout } = useAuth();
@@ -81,10 +81,11 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-dark">
       <Navbar />
-      <main className="flex-grow pt-16">
+      <main className="flex-grow pt-16 pb-20 md:pb-0">
         <Outlet />
       </main>
       <Footer />
+      <BottomNavbar />
     </div>
   );
 };
