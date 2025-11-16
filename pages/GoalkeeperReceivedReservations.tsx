@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getReservationsByGoalkeeperId, updateReservationStatus } from '../services/api';
@@ -32,7 +31,10 @@ const GoalkeeperReceivedReservations: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-4xl font-black tracking-tighter text-center mb-10">Reservas <span className="text-primary">Recebidas</span></h1>
+      <div className="text-center mb-10">
+        <h1 className="text-4xl md:text-5xl font-black tracking-tighter font-orbitron">Reservas <span className="text-primary">Recebidas</span></h1>
+        <p className="text-lg text-gray-light mt-2">Gerencie os pedidos de jogos dos clientes.</p>
+      </div>
       {loading ? <Spinner /> : (
         reservations.length > 0 ? (
           <div className="space-y-6">
@@ -46,7 +48,10 @@ const GoalkeeperReceivedReservations: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-400 text-lg">Você ainda não recebeu nenhuma reserva.</p>
+          <div className="text-center py-20">
+            <p className="text-xl text-gray-light">Você ainda não recebeu nenhuma reserva.</p>
+            <p className="text-gray-light/70 mt-2">Divulgue seu perfil para começar a jogar!</p>
+          </div>
         )
       )}
     </div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getReservationsByUserId, updateReservationStatus } from '../services/api';
@@ -32,7 +31,10 @@ const MyReservations: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-4xl font-black tracking-tighter text-center mb-10">Minhas <span className="text-primary">Reservas</span></h1>
+       <div className="text-center mb-10">
+        <h1 className="text-4xl md:text-5xl font-black tracking-tighter font-orbitron">Minhas <span className="text-primary">Reservas</span></h1>
+        <p className="text-lg text-gray-light mt-2">Acompanhe o status dos seus jogos agendados.</p>
+      </div>
       {loading ? <Spinner /> : (
         reservations.length > 0 ? (
           <div className="space-y-6">
@@ -41,7 +43,10 @@ const MyReservations: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-400 text-lg">Você ainda não fez nenhuma reserva.</p>
+          <div className="text-center py-20">
+            <p className="text-xl text-gray-light">Você ainda não fez nenhuma reserva.</p>
+            <p className="text-gray-light/70 mt-2">Encontre um goleiro e agende sua primeira partida!</p>
+          </div>
         )
       )}
     </div>

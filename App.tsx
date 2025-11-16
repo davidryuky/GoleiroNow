@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, ReactElement } from 'react';
 import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
@@ -14,7 +15,8 @@ import GoalkeeperDashboard from './pages/GoalkeeperDashboard';
 import GoalkeeperEditProfile from './pages/GoalkeeperEditProfile';
 import GoalkeeperReceivedReservations from './pages/GoalkeeperReceivedReservations';
 
-const ClientRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+// FIX: Refactored to take an `element` prop instead of `children` to avoid type inference issues.
+const ClientRoute = ({ element }: { element: ReactElement }): ReactElement | null => {
     const { currentUser, userType } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,10 +29,11 @@ const ClientRoute: React.FC<{ children: React.ReactElement }> = ({ children }) =
         }
     }, [currentUser, userType, navigate, location]);
 
-    return currentUser && userType === 'client' ? children : null;
+    return currentUser && userType === 'client' ? element : null;
 };
 
-const GoalkeeperRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+// FIX: Refactored to take an `element` prop instead of `children` to avoid type inference issues.
+const GoalkeeperRoute = ({ element }: { element: ReactElement }): ReactElement | null => {
     const { currentUser, userType } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,10 +46,11 @@ const GoalkeeperRoute: React.FC<{ children: React.ReactElement }> = ({ children 
         }
     }, [currentUser, userType, navigate, location]);
 
-    return currentUser && userType === 'goalkeeper' ? children : null;
+    return currentUser && userType === 'goalkeeper' ? element : null;
 };
 
-const NotFoundRedirect: React.FC = () => {
+// FIX: Refactored from React.FC to a standard functional component for clearer type inference.
+const NotFoundRedirect = (): null => {
     const navigate = useNavigate();
     useEffect(() => {
         navigate('/');
@@ -60,20 +64,23 @@ function App() {
     <AuthProvider>
       <HashRouter>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+          {/* FIX: Add 'path="/"' to the main layout Route for clarity and to resolve potential routing ambiguity. */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/goalkeepers" element={<GoalkeeperList />} />
             <Route path="/goalkeeper/:id" element={<GoalkeeperProfile />} />
             
-            <Route path="/book/:id" element={<ClientRoute><BookingPage /></ClientRoute>} />
-            <Route path="/my-reservations" element={<ClientRoute><MyReservations /></ClientRoute>} />
-            <Route path="/favorites" element={<ClientRoute><Favorites /></ClientRoute>} />
+            {/* FIX: Updated protected routes to use the `element` prop. */}
+            <Route path="/book/:id" element={<ClientRoute element={<BookingPage />} />} />
+            <Route path="/my-reservations" element={<ClientRoute element={<MyReservations />} />} />
+            <Route path="/favorites" element={<ClientRoute element={<Favorites />} />} />
             
             <Route path="/goalkeeper-register" element={<GoalkeeperRegister />} />
-            <Route path="/goalkeeper/dashboard" element={<GoalkeeperRoute><GoalkeeperDashboard /></GoalkeeperRoute>} />
-            <Route path="/goalkeeper/edit-profile" element={<GoalkeeperRoute><GoalkeeperEditProfile /></GoalkeeperRoute>} />
-            <Route path="/goalkeeper/reservations" element={<GoalkeeperRoute><GoalkeeperReceivedReservations /></GoalkeeperRoute>} />
+            {/* FIX: Updated protected routes to use the `element` prop. */}
+            <Route path="/goalkeeper/dashboard" element={<GoalkeeperRoute element={<GoalkeeperDashboard />} />} />
+            <Route path="/goalkeeper/edit-profile" element={<GoalkeeperRoute element={<GoalkeeperEditProfile />} />} />
+            <Route path="/goalkeeper/reservations" element={<GoalkeeperRoute element={<GoalkeeperReceivedReservations />} />} />
 
             <Route path="*" element={<NotFoundRedirect />} />
           </Route>

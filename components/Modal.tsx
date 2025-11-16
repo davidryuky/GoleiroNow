@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface ModalProps {
@@ -12,11 +11,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center" onClick={onClose}>
-      <div className="bg-gray-900 rounded-lg shadow-xl p-6 w-full max-w-md border border-primary/50" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-70 z-[100] flex justify-center items-center backdrop-blur-sm animate-fade-in" onClick={onClose}>
+      <div className="bg-gray-dark/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 w-full max-w-md border border-gray-border" onClick={e => e.stopPropagation()}>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-white">{title}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white">&times;</button>
+          <h2 className="text-2xl font-bold text-light font-orbitron">{title}</h2>
+          <button onClick={onClose} className="text-gray-light hover:text-light text-2xl">&times;</button>
         </div>
         <div>{children}</div>
       </div>
