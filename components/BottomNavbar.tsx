@@ -7,64 +7,38 @@ const BottomNavbar = () => {
     const { currentUser, userType } = useAuth();
 
     const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `relative flex flex-col items-center justify-center w-full pt-2 pb-1 transition-colors duration-300 group ${
+        `flex flex-col items-center justify-center w-full pt-2 pb-1 transition-colors duration-300 ${
             isActive ? 'text-primary' : 'text-gray-400 hover:text-white'
         }`;
     
     return (
-        <nav className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-sm 
-                       bg-black/40 backdrop-blur-lg rounded-2xl z-50 border border-white/10 overflow-hidden">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700/50 shadow-lg z-50">
             <div className="flex justify-around h-16">
                 <NavLink to="/" className={navLinkClass} end>
-                    {({isActive}) => (
-                        <>
-                            {isActive && <span className="absolute top-1.5 h-1 w-1 rounded-full bg-primary shadow-glow-primary"></span>}
-                            <StadiumIcon className="h-6 w-6 mb-1" />
-                            <span className="text-xs font-medium">Home</span>
-                        </>
-                    )}
+                    <StadiumIcon className="h-6 w-6 mb-1" />
+                    <span className="text-xs font-medium">Home</span>
                 </NavLink>
                 <NavLink to="/goalkeepers" className={navLinkClass}>
-                     {({isActive}) => (
-                        <>
-                            {isActive && <span className="absolute top-1.5 h-1 w-1 rounded-full bg-primary shadow-glow-primary"></span>}
-                            <SearchIcon className="h-6 w-6 mb-1" />
-                            <span className="text-xs font-medium">Buscar</span>
-                        </>
-                    )}
+                    <SearchIcon className="h-6 w-6 mb-1" />
+                    <span className="text-xs font-medium">Buscar</span>
                 </NavLink>
 
                 {currentUser && userType === 'client' && (
                     <NavLink to="/my-reservations" className={navLinkClass}>
-                         {({isActive}) => (
-                            <>
-                                {isActive && <span className="absolute top-1.5 h-1 w-1 rounded-full bg-primary shadow-glow-primary"></span>}
-                                <ClipboardIcon className="h-6 w-6 mb-1" />
-                                <span className="text-xs font-medium">Reservas</span>
-                            </>
-                        )}
+                        <ClipboardIcon className="h-6 w-6 mb-1" />
+                        <span className="text-xs font-medium">Reservas</span>
                     </NavLink>
                 )}
                 
                 {currentUser && userType === 'goalkeeper' ? (
                     <NavLink to="/goalkeeper/dashboard" className={navLinkClass}>
-                         {({isActive}) => (
-                            <>
-                                {isActive && <span className="absolute top-1.5 h-1 w-1 rounded-full bg-primary shadow-glow-primary"></span>}
-                                <ShieldCheckIcon className="h-6 w-6 mb-1" />
-                                <span className="text-xs font-medium">Dashboard</span>
-                            </>
-                        )}
+                        <ShieldCheckIcon className="h-6 w-6 mb-1" />
+                        <span className="text-xs font-medium">Dashboard</span>
                     </NavLink>
                 ) : (
                     <NavLink to={currentUser ? "/goalkeeper-register" : "/login"} className={navLinkClass}>
-                         {({isActive}) => (
-                            <>
-                                {isActive && <span className="absolute top-1.5 h-1 w-1 rounded-full bg-primary shadow-glow-primary"></span>}
-                                <ShieldCheckIcon className="h-6 w-6 mb-1" />
-                                <span className="text-xs font-medium">Goleiro</span>
-                            </>
-                        )}
+                        <ShieldCheckIcon className="h-6 w-6 mb-1" />
+                        <span className="text-xs font-medium">Goleiro</span>
                     </NavLink>
                 )}
             </div>

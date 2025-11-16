@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getGoalkeeperById } from '../services/api';
@@ -39,12 +40,12 @@ const GoalkeeperProfile: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <div className="bg-gray-900/50 rounded-2xl shadow-2xl overflow-hidden md:flex border border-white/10 animate-border-pulse">
+      <div className="bg-gray-900 rounded-2xl shadow-2xl overflow-hidden md:flex">
         <div className="md:w-1/3 relative">
           <img src={goalkeeper.photoUrl} alt={goalkeeper.name} className="w-full h-full object-cover" />
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-4">
             { currentUser && userType === 'client' && (
-                <button onClick={handleFavoriteClick} className="bg-black/50 backdrop-blur-sm p-3 rounded-full text-white hover:text-red-500 transition-colors duration-200">
+                <button onClick={handleFavoriteClick} className="bg-dark/50 p-3 rounded-full text-white hover:text-red-500 transition-colors duration-200">
                     <HeartIcon className={`h-7 w-7 ${isFav ? 'text-red-500 fill-current' : 'text-white'}`} />
                 </button>
             )}
@@ -54,7 +55,7 @@ const GoalkeeperProfile: React.FC = () => {
           <div>
             <div className="flex justify-between items-start">
               <div>
-                <h1 className="text-4xl font-bold text-white font-orbitron">{goalkeeper.name}</h1>
+                <h1 className="text-4xl font-bold text-white">{goalkeeper.name}</h1>
                 <p className="flex items-center text-lg text-gray-400 mt-1">
                   <MapPinIcon className="w-5 h-5 mr-2" />
                   {goalkeeper.region}, {goalkeeper.city}
@@ -64,18 +65,18 @@ const GoalkeeperProfile: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-6 text-center">
-                <div className="bg-black/20 p-3 rounded-lg border border-white/10"><span className="block text-2xl font-bold text-primary font-orbitron">{goalkeeper.age}</span><span className="text-sm text-gray-400">Anos</span></div>
-                <div className="bg-black/20 p-3 rounded-lg border border-white/10"><span className="block text-2xl font-bold text-primary font-orbitron">R${goalkeeper.pricePerHour}</span><span className="text-sm text-gray-400">/ hora</span></div>
-                <div className="bg-black/20 p-3 rounded-lg border border-white/10 col-span-2 sm:col-span-1"><span className="block text-2xl font-bold text-primary font-orbitron">{goalkeeper.rating}</span><span className="text-sm text-gray-400">Avaliação</span></div>
+                <div className="bg-gray-800 p-3 rounded-lg"><span className="block text-2xl font-bold text-primary">{goalkeeper.age}</span><span className="text-sm text-gray-400">Anos</span></div>
+                <div className="bg-gray-800 p-3 rounded-lg"><span className="block text-2xl font-bold text-primary">R${goalkeeper.pricePerHour}</span><span className="text-sm text-gray-400">/ hora</span></div>
+                <div className="bg-gray-800 p-3 rounded-lg col-span-2 sm:col-span-1"><span className="block text-2xl font-bold text-primary">{goalkeeper.rating}</span><span className="text-sm text-gray-400">Avaliação</span></div>
             </div>
 
-            <p className="text-gray-300 mb-6 leading-relaxed">{goalkeeper.description}</p>
+            <p className="text-gray-300 mb-6">{goalkeeper.description}</p>
             
             <div>
-              <h3 className="text-xl font-semibold text-white mb-3 flex items-center font-orbitron"><CalendarIcon className="w-6 h-6 mr-2 text-primary"/> Disponibilidade</h3>
+              <h3 className="text-xl font-semibold text-white mb-3 flex items-center"><CalendarIcon className="w-6 h-6 mr-2 text-primary"/> Disponibilidade</h3>
               <div className="flex flex-wrap gap-2">
                 {Object.entries(goalkeeper.availability).map(([day, times]) => (
-                  <div key={day} className="bg-white/5 rounded-full px-3 py-1 text-sm text-gray-300 border border-white/10">
+                  <div key={day} className="bg-gray-800 rounded-full px-3 py-1 text-sm text-gray-300">
                     <strong>{day}</strong>: {times.join(', ')}
                   </div>
                 ))}
