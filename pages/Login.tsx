@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -69,19 +68,20 @@ const Login: React.FC = () => {
   const currentList = userType === 'client' ? users : goalkeepers;
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] px-4">
-      <div className="w-full max-w-md p-8 space-y-8 bg-gray-900 border border-gray-700 rounded-2xl shadow-lg">
+    <div className="flex items-center justify-center min-h-[calc(100vh-150px)] px-4 bg-cover bg-center" style={{backgroundImage: "url('https://img.freepik.com/fotos-gratis/jogadores-de-futebol-em-acao-em-estadios-profissionais_654080-1750.jpg')"}}>
+      <div className="absolute inset-0 bg-dark/80 backdrop-blur-sm"></div>
+      <div className="relative w-full max-w-md p-8 space-y-8 bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl shadow-2xl">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-white">
+          <h2 className="text-center text-3xl font-extrabold text-white font-orbitron">
             Acessar sua Conta
           </h2>
           <p className="mt-2 text-center text-sm text-gray-400">
             Selecione seu perfil para continuar (simulação)
           </p>
         </div>
-        <div className="flex bg-gray-800 p-1 rounded-lg">
-            <button onClick={() => handleUserTypeChange('client')} className={`w-1/2 py-2 rounded-md transition-colors ${userType === 'client' ? 'bg-primary text-white' : 'text-gray-300'}`}>Cliente</button>
-            <button onClick={() => handleUserTypeChange('goalkeeper')} className={`w-1/2 py-2 rounded-md transition-colors ${userType === 'goalkeeper' ? 'bg-primary text-white' : 'text-gray-300'}`}>Goleiro</button>
+        <div className="flex bg-black/20 p-1 rounded-lg">
+            <button onClick={() => handleUserTypeChange('client')} className={`w-1/2 py-2.5 rounded-md transition-all duration-300 ${userType === 'client' ? 'bg-primary text-white shadow-lg' : 'text-gray-300'}`}>Cliente</button>
+            <button onClick={() => handleUserTypeChange('goalkeeper')} className={`w-1/2 py-2.5 rounded-md transition-all duration-300 ${userType === 'goalkeeper' ? 'bg-primary text-white shadow-lg' : 'text-gray-300'}`}>Goleiro</button>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {loading ? <Spinner /> : (
@@ -92,7 +92,7 @@ const Login: React.FC = () => {
                     id="user-select" 
                     value={selectedUserId}
                     onChange={(e) => setSelectedUserId(e.target.value)}
-                    className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200"
+                    className="w-full bg-gray-800/50 border border-gray-700 text-white rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200"
                 >
                     {currentList.map(user => (
                         <option key={user.id} value={user.id}>{user.name}</option>
